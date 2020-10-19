@@ -160,12 +160,12 @@ class Solution {
             if (stack.isEmpty() || height[i] <= height[stack.peek()]) {
                 stack.push(i++);
             } else {
-                int pre = stack.pop();
+                int left = stack.pop();
                 if (!stack.isEmpty()) {
-                    // find the smaller height between the left bar and right bard
+                    // find the smaller height between the left bar and right bar
                     int minHeight = Math.min(height[stack.peek()], height[i]);
                     // calculate the area of water block
-                    water += (minHeight - height[pre]) * (i - stack.peek() - 1);
+                    water += (minHeight - height[left]) * (i - stack.peek() - 1);
                 }
             }
         }
