@@ -161,22 +161,30 @@ class Solution {
         // increase and then decreasing 
         // return any i such that it is a the peak of montain 
         // so we want to record the prev index when increasing become decreasing 
-        // simple question code it out  this will be linear time
+        // simple question code it out  this will be logn time
         int i = 0;
-        int n = arr.length;
-        int flag = 0;
-        int prev = -1;
-        int res = -1;
-        while(i < n) {
-            if(prev < arr[i]) {
-                flag = 1;
-            } else if (flag == 1 && prev > arr[i]){
-                res = i - 1;
+        int size =  arr.length - 1;
+        int n = size;
+        int peek = -1;
+        // find the peak 
+        while(i <= n) {
+            int mid = i + ((n - i)/2);
+            int v = arr[mid];
+            int v_n = mid + 1 > size ? v :  arr[mid+1];
+            int v_p = mid - 1 < 0 ? v :  arr[mid-1];
+            if (v >= v_n && v_p <= v) {
+                peek = mid;
                 break;
             }
-            prev = arr[i];
-            i++;
+            if (v >= v_n && v_p >= v) {
+                // we are on the right side
+                n = mid - 1;
+            }
+            if (v  <=  v_n && v_p  <=  v){
+                // we are on the left side
+                i = mid + 1;
+            }
         }
-        return res == -1 ? 0 : res;
+        return peek;
     }
 }
