@@ -67,11 +67,9 @@ class Solution {
                     }                    
                 }
                 if (root.left != null && !check.contains(root.left.val)) {
-                    System.out.println(root.left.val + " xx" + check.contains(root.left.val));
                     res.add(root.left);
                 }
                 if (root.right != null && !check.contains(root.right.val)) {
-                    System.out.println(root.right.val + " xx" + check.contains(root.right.val) );
                     res.add(root.right);
                 }
             }
